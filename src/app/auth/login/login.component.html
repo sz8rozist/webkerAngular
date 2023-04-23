@@ -1,0 +1,50 @@
+<div fxLayoutAlign="center center" class="login-div">
+  <mat-card fxFlex.sm="50" fxFlex.xs="100" fxFlex.md="50" fxFlex="30">
+    <mat-toolbar color="warn">
+      <span>Bejelentkezés</span>
+    </mat-toolbar>
+    <form
+      [formGroup]="loginForm"
+      fxLayoutAlign="streth"
+      fxLayout="column"
+      class="login-form"
+    >
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email" />
+        <mat-error *ngIf="loginForm.get('email')?.errors?.['required']"
+          >Kötelező kitölteni!</mat-error
+        >
+        <mat-error *ngIf="loginForm.get('email')?.errors?.['email']"
+          >Hibás email formátum!</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          appPasswordlengthdetector 
+          formControlName="password"
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+
+        <mat-error *ngIf="loginForm.get('password')?.errors?.['required']"
+          >Kötelező kitölteni!</mat-error
+        >
+        <mat-error *ngIf="loginForm.get('password')?.errors?.['minlength']"
+          >Legalább 6 karakter hosszú kell legyen!</mat-error
+        >
+      </mat-form-field>
+      <button (click)="onLogin()" mat-raised-button color="accent">
+        Belépés
+      </button>
+    </form>
+  </mat-card>
+</div>

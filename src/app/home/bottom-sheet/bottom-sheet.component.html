@@ -1,0 +1,13 @@
+<mat-nav-list>
+    <div *ngIf="taborok.length > 0">
+        <div *ngFor="let t of taborok">
+            <mat-list-item (click)="onChoose(t.nev)">
+                <span matListItemTitle>{{t.nev}}</span>
+                <span mat-line>{{t.helyszin + " " + t.mettol + " - " + t.meddig}}</span>
+            </mat-list-item>
+        </div>
+    </div>
+    <div *ngIf="taborok.length == 0">
+        <span matListItemTitle>Nincsenek elérhető táborok.</span>
+    </div>
+</mat-nav-list>

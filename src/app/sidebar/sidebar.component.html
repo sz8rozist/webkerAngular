@@ -1,0 +1,28 @@
+<mat-nav-list>
+    <button *ngIf="loggedInUser" mat-raised-button (click)="openSheet()">Táboraink</button>
+    <a
+      (click)="logout()"
+      mat-list-item
+      *ngIf="loggedInUser"
+      (click)="onSidenavClose()"
+    >
+      <mat-icon>logout</mat-icon
+      ><span class="nav-caption">Kijelentkezés</span>
+    </a>
+    <a
+      routerLink="signup"
+      mat-list-item
+      *ngIf="!loggedInUser"
+      (click)="onSidenavClose()"
+    >
+      <mat-icon>signup</mat-icon><span class="nav-caption">Regisztráció</span>
+    </a>
+    <a
+      routerLink="login"
+      mat-list-item
+      *ngIf="!loggedInUser"
+      (click)="onSidenavClose()"
+    >
+      <mat-icon>signin</mat-icon><span class="nav-caption">Belépés</span>
+    </a>
+  </mat-nav-list>

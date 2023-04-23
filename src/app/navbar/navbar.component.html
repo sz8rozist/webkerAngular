@@ -1,0 +1,28 @@
+<mat-toolbar class="mat-elevation-z6">
+    <div fxHide.gt-xs>
+      <button mat-icon-button (click)="toggleSideNav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div>
+      <span> <mat-icon>village</mat-icon> Tábor app</span>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <li *ngIf="loggedInUser">
+          <button mat-raised-button (click)="openSheet()">Táboraink</button>
+        </li>
+        <li *ngIf="loggedInUser">
+          <a mat-button routerLink="" (click)="logout()">Kijelentkezés</a>
+        </li>
+        <li *ngIf="!loggedInUser">
+          <a mat-raised-button routerLink="signup" color="accent"
+            >Regisztráció</a
+          >
+        </li>
+        <li *ngIf="!loggedInUser">
+          <a mat-raised-button routerLink="login" color="warn">Belépés</a>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar>

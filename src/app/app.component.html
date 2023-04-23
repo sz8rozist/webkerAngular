@@ -1,0 +1,11 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+    <app-sidebar (logoutEvent)="logout()" [loggedInUser]="loggedInUser" (sidenavClose)="sidenav.close()"></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-navbar (logoutEvent)="logout()" [loggedInUser]="loggedInUser" (sidenavToggle)="sidenav.toggle()"></app-navbar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

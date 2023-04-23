@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "nyaritabor-d9612": {
+      "hosting": {
+        "taborApp": [
+          "nyaritabor-d9612"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "nyaritabor-d9612"
+  }
+}

@@ -1,0 +1,76 @@
+<div fxLayoutAlign="center center">
+    <mat-card fxFlex.sm="50" fxFlex.xs="100" fxFlex.md="50" fxFlex="50">
+      <mat-card-header>
+        <mat-card-title>Új foglalás - {{tabor?.nev}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content
+        ><form
+          (ngSubmit)="onSubmit()"
+          [formGroup]="reservationForm"
+          fxLayoutAlign="streth"
+          fxLayout="column"
+          class="login-form"
+        >
+          <div formGroupName="nev" class="subForm">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Vezetéknév"
+                formControlName="veznev"
+              />
+              <mat-error
+                *ngIf="reservationForm.get('nev.veznev')?.errors?.['required']"
+                >Kötelező kitölteni!</mat-error
+              >
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Keresztnév"
+                formControlName="kernev"
+              />
+              <mat-error
+                *ngIf="reservationForm.get('nev.kernev')?.errors?.['required']"
+                >Kötelező kitölteni!</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Születési idő"
+              formControlName="szulido"
+            />
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="reservationForm.get('szulido')?.errors?.['required']"
+              >Kötelező kitölteni!</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Személyigazolvány szám"
+              formControlName="szigsz"
+            />
+            <mat-error *ngIf="reservationForm.get('szigsz')?.errors?.['required']"
+              >Kötelező kitölteni!</mat-error
+            >
+          </mat-form-field>
+          <mat-chip-listbox formControlName="nem" aria-label="Fish selection">
+            <mat-chip-option
+              color="accent"
+              >Férfi</mat-chip-option
+            >
+            <mat-chip-option color="warn"
+              >Nő</mat-chip-option
+            >
+          </mat-chip-listbox>
+          <button mat-raised-button color="warn">Küldés</button>
+        </form></mat-card-content
+      >
+      <mat-card-footer>Foglalás</mat-card-footer>
+    </mat-card>
+  </div>
+  
