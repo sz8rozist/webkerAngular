@@ -5,7 +5,7 @@
         </mat-toolbar>
         <form (ngSubmit)="onSignUp()" [formGroup]="signupForm" fxLayoutAlign="streth" fxLayout="column" class="signup-form">
             <mat-form-field>
-              <input matInput placeholder="Felhasználónév" formControlName="email">
+              <input matInput placeholder="Email" formControlName="email">
               <mat-error *ngIf="signupForm.get('email')?.errors?.['required']">Kötelező kitölteni!</mat-error>
             </mat-form-field>
             <mat-form-field>
