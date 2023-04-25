@@ -11,17 +11,21 @@
     >
       <mat-form-field>
         <input matInput placeholder="Email" formControlName="email" />
+      </mat-form-field>
+      <ng-container
+        *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.dirty"
+      >
         <mat-error *ngIf="loginForm.get('email')?.errors?.['required']"
           >Kötelező kitölteni!</mat-error
         >
         <mat-error *ngIf="loginForm.get('email')?.errors?.['email']"
           >Hibás email formátum!</mat-error
         >
-      </mat-form-field>
+      </ng-container>
       <mat-form-field>
         <input
           matInput
-          appPasswordlengthdetector 
+          appPasswordlengthdetector
           formControlName="password"
           [type]="hide ? 'password' : 'text'"
         />
@@ -34,15 +38,25 @@
         >
           <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
         </button>
-
+      </mat-form-field>
+      <ng-container
+        *ngIf="
+          loginForm.get('password')?.errors && loginForm.get('password')?.dirty
+        "
+      >
         <mat-error *ngIf="loginForm.get('password')?.errors?.['required']"
           >Kötelező kitölteni!</mat-error
         >
         <mat-error *ngIf="loginForm.get('password')?.errors?.['minlength']"
           >Legalább 6 karakter hosszú kell legyen!</mat-error
         >
-      </mat-form-field>
-      <button (click)="onLogin()" mat-raised-button color="accent">
+      </ng-container>
+      <button
+        (click)="onLogin()"
+        [disabled]="!loginForm.valid"
+        mat-raised-button
+        color="accent"
+      >
         Belépés
       </button>
     </form>

@@ -21,6 +21,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeModule } from './home/home.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { HomeModule } from './home/home.module';
     FlexLayoutModule,
     MatListModule,
     AngularFirestoreModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

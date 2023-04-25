@@ -1,21 +1,47 @@
 <div fxLayoutAlign="center center" class="signup-div">
-    <mat-card fxFlex.sm="50" fxFlex.xs="100" fxFlex.md="50" fxFlex="30">
-        <mat-toolbar color="warn">
-            <span>Regisztráció</span>
-        </mat-toolbar>
-        <form (ngSubmit)="onSignUp()" [formGroup]="signupForm" fxLayoutAlign="streth" fxLayout="column" class="signup-form">
-            <mat-form-field>
-              <input matInput placeholder="Email" formControlName="email">
-              <mat-error *ngIf="signupForm.get('email')?.errors?.['required']">Kötelező kitölteni!</mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput formControlName="password" placeholder="Jelszó">
-                <mat-error *ngIf="signupForm.get('password')?.errors?.['required']">Kötelező kitölteni!</mat-error>
-                <mat-error *ngIf="signupForm.get('password')?.errors?.['minlength']">Legalább 6 karakter hosszú kell legyen!</mat-error>
-              </mat-form-field>
-              <button mat-raised-button color="accent">Küldés</button>
-          </form>
-      </mat-card>
+  <mat-card fxFlex.sm="50" fxFlex.xs="100" fxFlex.md="50" fxFlex="30">
+    <mat-toolbar color="warn">
+      <span>Regisztráció</span>
+    </mat-toolbar>
+    <form
+      (ngSubmit)="onSignUp()"
+      [formGroup]="signupForm"
+      fxLayoutAlign="streth"
+      fxLayout="column"
+      class="signup-form"
+    >
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email" />
+      </mat-form-field>
+      <ng-container
+        *ngIf="
+          signupForm.get('email')?.errors && signupForm.get('email')?.dirty
+        "
+      >
+        <mat-error *ngIf="signupForm.get('email')?.errors?.['required']"
+          >Kötelező kitölteni!</mat-error
+        >
+        <mat-error *ngIf="signupForm.get('email')?.errors?.['email']"
+          >Hibás email formátum!</mat-error
+        >
+      </ng-container>
+      <mat-form-field>
+        <input matInput formControlName="password" placeholder="Jelszó" />
+      </mat-form-field>
+      <ng-container
+        *ngIf="
+          signupForm.get('password')?.errors &&
+          signupForm.get('password')?.dirty
+        "
+      >
+        <mat-error *ngIf="signupForm.get('password')?.errors?.['required']"
+          >Kötelező kitölteni!</mat-error
+        >
+        <mat-error *ngIf="signupForm.get('password')?.errors?.['minlength']"
+          >Legalább 6 karakter hosszú kell legyen!</mat-error
+        >
+      </ng-container>
+      <button mat-raised-button color="accent" [disabled]="!signupForm.valid">Küldés</button>
+    </form>
+  </mat-card>
 </div>
-
-  
