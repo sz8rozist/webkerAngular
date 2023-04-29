@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
   title = 'taborApp';
   loggedInUser?: firebase.default.User | null;
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.authService.isUserLoggedIn().subscribe(
@@ -27,6 +28,7 @@ export class AppComponent {
       .logout()
       .then(() => {
         console.log('Logged out successfully.');
+        this.router.navigate(["login"])
       })
       .catch((error) => {
         console.log(error);
