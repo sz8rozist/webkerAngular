@@ -1,6 +1,8 @@
 <mat-nav-list>
+  <div class="center">
     <button *ngIf="loggedInUser" mat-raised-button (click)="openSheet()">Táboraink</button>
-    <a
+  </div>
+    <a class="center mt-15"
       (click)="logout()"
       mat-list-item
       *ngIf="loggedInUser"

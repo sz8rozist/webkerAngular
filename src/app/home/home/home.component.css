@@ -5,4 +5,7 @@
 mat-icon {
   cursor: pointer;
 }
-
+#table-container {
+  width: 100%;
+  overflow: auto;
+}

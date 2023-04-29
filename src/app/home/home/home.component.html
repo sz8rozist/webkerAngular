@@ -2,7 +2,7 @@
   <div fxLayout="row" fxLayoutAlign="space-between baseline">
     <h1>Lefoglalt nyári táborok</h1>
   </div>
-  <div fxLayout="column" fxLayoutAlign="center center" *ngIf="foglalasok && foglalasok.length > 0">
+  <div fxLayout="column" id="table-container" fxLayoutAlign="center" *ngIf="foglalasok && foglalasok.length > 0">
       <table mat-table [dataSource]="foglalasok" class="mat-elevation-z8" >
         <ng-container matColumnDef="veznev">
           <th appTableHeaderColor mat-header-cell *matHeaderCellDef> Vezetéknév </th>
