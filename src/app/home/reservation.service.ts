@@ -10,15 +10,15 @@ export class ReservationService {
   constructor(private storage: AngularFirestore) { }
 
   createReservation(reservation: Reservation){
-      return this.storage.collection("reservation").add(reservation);
+      return this.storage.collection<Reservation>("reservation").add(reservation);
   }
 
   deleteReservation(reservation: Reservation){
-    return this.storage.collection("reservation").doc(reservation.id).delete();
+    return this.storage.collection<Reservation>("reservation").doc(reservation.id).delete();
   }
 
   updateReservation(reservation: Reservation, id: string){
-    return this.storage.collection("reservation")
+    return this.storage.collection<Reservation>("reservation")
     .doc(id)
     .update(reservation);
   }
