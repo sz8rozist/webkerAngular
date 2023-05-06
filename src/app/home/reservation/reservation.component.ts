@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Reservation } from 'src/app/models/Reservation';
 import { AuthService } from 'src/app/auth/auth.service';
 import { formatDate } from '@angular/common';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-reservation',
@@ -55,31 +56,31 @@ export class ReservationComponent {
     );
   }
 
-  
   onSubmit() {
-      this.authService.isUserLoggedIn().subscribe((user) => {
-        if (user) {
-          const res: Reservation = {
-            user_id: user.uid,
-            nev: {
-              veznev: this.reservationForm.get('nev.veznev')?.value as string,
-              kernev: this.reservationForm.get('nev.kernev')?.value as string,
-            },
-            szulido: this.formatDate(this.reservationForm.get('szulido')?.value, this.local) as string,
-            szigsz: this.reservationForm.get('szigsz')?.value as string,
-            nem: this.reservationForm.get('nem')?.value as string,
-          };
-            this.reservationService
-              .createReservation(res)
-              .then((_) => {
-                this.r.navigate(["/home"]);
-                console.log('Sikeres módosítás.');
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-        }
-      });
+    if (AppComponent.loggedUser) {
+      const res: Reservation = {
+        user_id: AppComponent.loggedUser.uid,
+        nev: {
+          veznev: this.reservationForm.get('nev.veznev')?.value as string,
+          kernev: this.reservationForm.get('nev.kernev')?.value as string,
+        },
+        szulido: this.formatDate(
+          this.reservationForm.get('szulido')?.value,
+          this.local
+        ) as string,
+        szigsz: this.reservationForm.get('szigsz')?.value as string,
+        nem: this.reservationForm.get('nem')?.value as string,
+      };
+      this.reservationService
+        .createReservation(res)
+        .then((_) => {
+          this.r.navigate(['/home']);
+          console.log('Sikeres Hozzáadás.');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 
   private formatDate(date: any, local: any) {
@@ -91,5 +92,5 @@ export class ReservationComponent {
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
     return [year, month, day].join('-');
-   }
+  }
 }

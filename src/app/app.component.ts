@@ -10,12 +10,14 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'taborApp';
   loggedInUser?: firebase.default.User | null;
+  static loggedUser?: firebase.default.User | null;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.authService.isUserLoggedIn().subscribe(
       (user) => {
         this.loggedInUser = user;
+        AppComponent.loggedUser = user;
       },
       (error) => {
         console.log(error);
